@@ -1,15 +1,19 @@
 <template>
-  <div>
-    {{ msg }}
+  <div class="form">
+
   </div>
 </template>
 <script>
   export default {
-    name: "FormValidate",
+    name: 'VForm',
     data() {
       return {
-        msg: "form表单"
+        msg: "Form表单组件"
       }
     }
+
   }
 </script>
+<style lang="scss" scoped>
+
+</style>
