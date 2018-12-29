@@ -1,17 +1,21 @@
 <template>
-  <div class="form">
+  <form>
+    <slot>
 
-  </div>
+    </slot>
+  </form>
 </template>
 <script>
   export default {
     name: 'VForm',
-    data() {
-      return {
-        msg: "Form表单组件"
+    props: {
+      model: {
+        type: Object
+      },
+      rules: {
+        type: Object
       }
     }
-
   }
 </script>
 <style lang="scss" scoped>
