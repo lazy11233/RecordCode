@@ -31,10 +31,10 @@
         const value = event.target.value;
         this.currentValue = value;
         this.$emit("input", value);
-        this.dispatch("vFormItem", "on-form-change", value);
+        this.dispatch("iFormItem", "on-form-change", value);
       },
       handleBlur() {
-        this.dispatch("vFormItem", "on-form-blur", this.currentValue);
+        this.dispatch("iFormItem", "on-form-blur", this.currentValue);
       }
     }
   }

@@ -16,23 +16,18 @@
         type: Object
       }
     },
-    provide() {
-      return {
-        form: this
-      }
-    },
     data() {
       return {
-        fields: []  // 用来校验FormItem选项的
+        fileds: []
       }
     },
     created() {
-      this.$on("on-form-item-add", (field) => {
-        if(field) this.fields.push(field);
+      this.$on("on-form-item-add", field => {
+        if (field) this.fileds.push(field);
       });
       this.$on("on-form-item-remove", field => {
-        if(field) this.fields.splice(this.fields.indexOf(field), 1);
-      });
+        if (field.prop) this.fileds.splice(this.fileds.indexOf(field), 1);
+      })
     }
   }
 </script>
