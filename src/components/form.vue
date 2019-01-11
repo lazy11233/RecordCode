@@ -8,6 +8,11 @@
 <script>
   export default {
     name: 'vForm',
+    provide() {
+      return {
+        form: this
+      }
+    },
     props: {
       model: {
         type: Object
