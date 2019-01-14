@@ -1,8 +1,9 @@
 <template>
   <div>
-    <label v-if="label">{{ label }}</label>
+    <label v-if="label" :class="{ 'i-form-item-label-required': isRequired }">{{ label }}</label>
     <div>
       <slot></slot>
+      <div v-if="validateState === 'error'" class="i-form-item-message">{{ validateMessage }}</div>
     </div>
   </div>
 </template>
@@ -26,8 +27,10 @@
     },
     data() {
       return {
+        isRequired: false,
         validateState: '',
         validateMessage: '',
+        initialValue: ''
       }
     },
     computed: {
@@ -38,6 +41,7 @@
     mounted() {
       if (this.prop) {
         this.dispatch("iForm", "on-form-item-add", this);
+        this.initialValue = this.fieldValue;
         this.setRules();
       }
     },
@@ -46,6 +50,13 @@
     },
     methods: {
       setRules() {
+        let rules = this.getRules();
+        if (rules.length) {
+          rules.every((rule) => {
+            // 如果当前校验规则中有必填项，则标记出来
+            this.isRequired = rule.required;
+          });
+        }
         this.$on("on-form-change", this.onFiledChange);
         this.$on("on-form-blur", this.onFiledBlur);
       },
